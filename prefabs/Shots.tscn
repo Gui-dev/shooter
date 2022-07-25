@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/images/Square.png" type="Texture" id=1]
+[ext_resource path="res://scripts/Shots.gd" type="Script" id=2]
+
+[node name="Shots" type="Sprite"]
+modulate = Color( 0.101961, 0.419608, 0.823529, 1 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="notifier" type="VisibilityNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="notifier" to="." method="_on_notifier_screen_exited"]
