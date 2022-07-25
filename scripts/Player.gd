@@ -6,6 +6,9 @@ var movement = Vector2.ZERO
 var shots = preload('res://prefabs/Shots.tscn')
 var loaded = true
 
+func _ready() -> void:
+  Global.player = self
+
 
 func _process(delta: float) -> void:
   movement.x = int(Input.is_action_pressed('right')) - int(Input.is_action_pressed('left'))
@@ -17,6 +20,10 @@ func _process(delta: float) -> void:
     Global.instance_node(shots, global_position, Global.create_parent_node)
     loaded = false
     $load_timer.start()
+
+
+func _exit_tree() -> void:
+  Global.player = null
 
 
 func _on_load_timer_timeout() -> void:

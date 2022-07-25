@@ -10,7 +10,7 @@ texture = ExtResource( 2 )
 script = ExtResource( 1 )
 
 [node name="load_timer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.1
 one_shot = true
 
 [connection signal="timeout" from="load_timer" to="." method="_on_load_timer_timeout"]
