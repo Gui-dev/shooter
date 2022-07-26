@@ -6,6 +6,7 @@ var movement = Vector2.ZERO
 var stunned = false
 var retreat = 6
 var health_points = 3
+var blood_particle = preload('res://prefabs/BloodParticle.tscn')
 
 
 func _process(delta: float) -> void:
@@ -16,12 +17,14 @@ func _process(delta: float) -> void:
     
   global_position += movement * velocity * delta
   
-  if health_points <= 0:
+  if health_points <= 0 and Global.create_parent_node != null:
+    var instance_blood_particle = Global.instance_node(blood_particle, global_position, Global.create_parent_node)
+    instance_blood_particle.rotation = movement.angle()
     queue_free()
 
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
-  if area.is_in_group('damage'):  
+  if area.is_in_group('damage') and !stunned:  
     modulate = Color.white
     area.get_parent().queue_free()
     movement = -movement * retreat
