@@ -6,6 +6,7 @@ var enemy_one = preload('res://scenes/Enemy.tscn')
 
 func _ready() -> void:
   Global.create_parent_node = self
+  Global.score = 0
   
 
 func _exit_tree() -> void:

@@ -15,6 +15,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
   movement.x = int(Input.is_action_pressed('right')) - int(Input.is_action_pressed('left'))
   movement.y = int(Input.is_action_pressed('down')) - int(Input.is_action_pressed('up'))
+  
+  global_position.x = clamp(global_position.x, 24, 616)
+  global_position.y = clamp(global_position.y, 24, 336)
     
   if !dead:
     global_position += velocity * movement * delta
