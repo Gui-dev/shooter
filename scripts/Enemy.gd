@@ -18,6 +18,9 @@ func _process(delta: float) -> void:
   global_position += movement * velocity * delta
   
   if health_points <= 0 and Global.create_parent_node != null:
+    if Global.camera != null:
+      Global.camera.shake_screen(50, 0.1)
+    
     Global.score += 10
     var instance_blood_particle = Global.instance_node(blood_particle, global_position, Global.create_parent_node)
     instance_blood_particle.rotation = movement.angle()
