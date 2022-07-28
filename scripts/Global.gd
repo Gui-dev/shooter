@@ -4,6 +4,7 @@ extends Node
 var create_parent_node: Node = null
 var player = null
 var score = 0
+var record = 0
 var camera = null
 
 
