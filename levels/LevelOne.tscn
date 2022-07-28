@@ -27,6 +27,10 @@ position = Vector2( 320, 180 )
 environment = SubResource( 1 )
 
 [node name="timer_spawn_enemy" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="timer_increase_difficulty" type="Timer" parent="."]
 autostart = true
 
 [node name="ui" type="Node2D" parent="."]
@@ -53,4 +57,5 @@ script = ExtResource( 5 )
 [node name="timer_camera" type="Timer" parent="camera"]
 
 [connection signal="timeout" from="timer_spawn_enemy" to="." method="_on_timer_spawn_enemy_timeout"]
+[connection signal="timeout" from="timer_increase_difficulty" to="." method="_on_timer_increase_difficulty_timeout"]
 [connection signal="timeout" from="camera/timer_camera" to="camera" method="_on_timer_camera_timeout"]

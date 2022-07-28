@@ -20,3 +20,8 @@ func _on_timer_spawn_enemy_timeout() -> void:
     enemy_position = Vector2(rand_range(-160, 670), rand_range(-90, 300))
   
   Global.instance_node(enemy_one, enemy_position, self)
+
+
+func _on_timer_increase_difficulty_timeout() -> void:
+  if $timer_spawn_enemy.wait_time > 0.50:
+    $timer_spawn_enemy.wait_time -= 0.10
