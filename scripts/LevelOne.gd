@@ -1,7 +1,7 @@
 extends Node2D
 
 
-var enemy_one = preload('res://scenes/Enemy.tscn')
+export(Array, PackedScene) var enemies
 
 
 func _ready() -> void:
@@ -19,7 +19,8 @@ func _on_timer_spawn_enemy_timeout() -> void:
   while enemy_position.x < 640 and enemy_position.x > -80 and enemy_position.y < 360 and enemy_position.y > -45:
     enemy_position = Vector2(rand_range(-160, 670), rand_range(-90, 300))
   
-  Global.instance_node(enemy_one, enemy_position, self)
+  var enemies_numbers = round(rand_range(0, enemies.size() - 1))
+  Global.instance_node(enemies[enemies_numbers], enemy_position, self)
 
 
 func _on_timer_increase_difficulty_timeout() -> void:
