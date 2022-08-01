@@ -3,6 +3,7 @@ extends Sprite
 var velocity = 250
 var movement = Vector2(1, 0)
 var one_way = true
+var damage
 
 
 func _process(delta: float) -> void:

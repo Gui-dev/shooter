@@ -39,7 +39,7 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
     area.get_parent().queue_free()
     movement = -movement * retreat
     stunned = true
-    health_points -= 1
+    health_points -= area.get_parent().damage
     $time_retreat.start()
 
 

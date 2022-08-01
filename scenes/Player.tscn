@@ -16,10 +16,15 @@ script = ExtResource( 1 )
 wait_time = 0.1
 one_shot = true
 
-[node name="hitbox" type="Area2D" parent="."]
+[node name="powerup_timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="hitbox" type="Area2D" parent="." groups=["player"]]
 
 [node name="collision" type="CollisionShape2D" parent="hitbox"]
 shape = SubResource( 1 )
 
 [connection signal="timeout" from="load_timer" to="." method="_on_load_timer_timeout"]
+[connection signal="timeout" from="powerup_timer" to="." method="_on_powerup_timer_timeout"]
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
