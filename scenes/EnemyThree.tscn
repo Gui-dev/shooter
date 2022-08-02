@@ -7,3 +7,4 @@ modulate = Color( 0.941176, 0.911229, 0.0392157, 1 )
 velocity = 120
 retreat = 1200
 health_points = 1
+points = 5

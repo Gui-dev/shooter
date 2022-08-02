@@ -6,6 +6,7 @@ var movement = Vector2.ZERO
 var stunned = false
 export(int) var retreat = 600
 export(int) var health_points = 3
+export(int) var points = 10
 onready var current_color = modulate
 var blood_particle = preload('res://prefabs/BloodParticle.tscn')
 
@@ -15,7 +16,7 @@ func _process(_delta: float) -> void:
     if Global.camera != null:
       Global.camera.shake_screen(50, 0.1)
     
-    Global.score += 10
+    Global.score += points
     var instance_blood_particle = Global.instance_node(blood_particle, global_position, Global.create_parent_node)
     instance_blood_particle.rotation = movement.angle()
     instance_blood_particle.modulate = Color.from_hsv(current_color.h, 1, 0.35)
