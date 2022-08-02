@@ -1,10 +1,13 @@
 extends Sprite
 
+signal change_lives(player_lives)
 
 var velocity = 150
 var movement = Vector2.ZERO
 var shots = preload('res://prefabs/Shots.tscn')
 var recharged = true
+var max_lives = 3
+var lives = max_lives
 var dead = false
 var recharged_time = 0.1
 var standard_recharged_time = recharged_time
@@ -15,6 +18,8 @@ var reset_power = []
 
 func _ready() -> void:
   Global.player = self
+  connect('change_lives', get_parent().get_node('ui/controls'), 'on_change_player_lives')
+  emit_signal('change_lives', max_lives)
 
 
 func _process(delta: float) -> void:
@@ -45,10 +50,14 @@ func _on_load_timer_timeout() -> void:
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
   if area.is_in_group('enemy'):
-    visible = false
-    dead = true
-    yield(get_tree().create_timer(1), 'timeout')
-    get_tree().reload_current_scene()
+    lives -= 1
+    emit_signal('change_lives', lives)
+    
+    if lives <= 0:
+      visible = false
+      dead = true
+      yield(get_tree().create_timer(1), 'timeout')
+      get_tree().reload_current_scene()
 
 
 func _on_powerup_timer_timeout() -> void:
