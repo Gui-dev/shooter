@@ -1,9 +1,13 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/images/Circle.png" type="Texture" id=1]
 [ext_resource path="res://scripts/BloodParticle.gd" type="Script" id=2]
+[ext_resource path="res://scripts/Particles.gd" type="Script" id=3]
 
-[node name="BloodParticle" type="CPUParticles2D"]
+[node name="Particles" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="blood_particle" type="CPUParticles2D" parent="."]
 z_index = -1
 amount = 15
 lifetime = 0.2
@@ -17,9 +21,15 @@ scale_amount = 0.05
 scale_amount_random = 0.12
 script = ExtResource( 2 )
 
-[node name="blood_time" type="Timer" parent="."]
+[node name="blood_time" type="Timer" parent="blood_particle"]
 wait_time = 0.15
 one_shot = true
 autostart = true
 
-[connection signal="timeout" from="blood_time" to="." method="_on_blood_time_timeout"]
+[node name="fade_timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="blood_particle/blood_time" to="blood_particle" method="_on_blood_time_timeout"]
+[connection signal="timeout" from="fade_timer" to="." method="_on_fade_timer_timeout"]
