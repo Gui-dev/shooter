@@ -6,7 +6,7 @@ func _ready() -> void:
 
 
 func _on_button_credits_pressed() -> void:
-  if get_tree().change_scene('res://scenes/Enemy.tscn') != OK:
+  if get_tree().change_scene("res://scenes/Credits.tscn") != OK:
     print('Error')
 
 
