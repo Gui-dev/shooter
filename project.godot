@@ -21,6 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="shooter"
+run/main_scene="res://scenes/StartScreen.tscn"
 config/icon="res://icon.png"
 
 [autoload]
