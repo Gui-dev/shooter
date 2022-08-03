@@ -13,3 +13,4 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
     area.get_parent().get_node('powerup_timer').start()
     area.get_parent().reset_power.append(name)
     queue_free()
+    area.get_parent().modulate = Color.green

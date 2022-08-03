@@ -20,6 +20,7 @@ func _ready() -> void:
   Global.player = self
   connect('change_lives', get_parent().get_node('ui/controls'), 'on_change_player_lives')
   emit_signal('change_lives', max_lives)
+  Global.damage_player_background = get_parent().get_node('ui/controls/damage_player')
 
 
 func _process(delta: float) -> void:
@@ -52,15 +53,20 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
   if area.is_in_group('enemy'):
     lives -= 1
     emit_signal('change_lives', lives)
+    Global.damage_player_background.visible = true
+    yield(get_tree().create_timer(0.1), 'timeout')
+    Global.damage_player_background.visible = false
     
     if lives <= 0:
       visible = false
       dead = true
       yield(get_tree().create_timer(1), 'timeout')
       get_tree().reload_current_scene()
+      Global.save_game()
 
 
 func _on_powerup_timer_timeout() -> void:
+  modulate = Color('1a6bd2')
   if reset_power.find('load_timer') != null:
     recharged_time = standard_recharged_time
     reset_power.erase('load_timer')

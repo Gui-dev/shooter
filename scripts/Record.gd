@@ -2,6 +2,7 @@ extends Label
 
 
 func _ready() -> void:
+  Global.load_game()
   text = String(Global.record)
   
 
