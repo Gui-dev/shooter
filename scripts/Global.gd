@@ -7,6 +7,7 @@ var score = 0
 var record = 0
 var camera = null
 var damage_player_background = null
+var game_state
 
 
 func instance_node(node: PackedScene, location: Vector2, parent: Node2D) -> Node:

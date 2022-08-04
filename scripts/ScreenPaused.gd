@@ -7,11 +7,12 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
   if event.is_action_pressed('ui_cancel'):
-    show(!get_tree().paused)
-    get_tree().paused = !get_tree().paused
+    if Global.game_state:
+      show(!get_tree().paused)
+      get_tree().paused = !get_tree().paused
 
 
-func show(is_visible) -> void:
+func show(is_visible: bool) -> void:
   for node in get_children():
     node.visible = is_visible
 

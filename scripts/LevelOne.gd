@@ -8,6 +8,7 @@ export(Array, PackedScene) var powers
 func _ready() -> void:
   Global.create_parent_node = self
   Global.score = 0
+  Global.game_state = true
   
 
 func _exit_tree() -> void:
