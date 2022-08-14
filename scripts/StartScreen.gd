@@ -1,10 +1,5 @@
 extends Control
 
-
-func _ready() -> void:
-  pass
-
-
 func _on_button_credits_pressed() -> void:
   if get_tree().change_scene("res://scenes/Credits.tscn") != OK:
     print('Error')
